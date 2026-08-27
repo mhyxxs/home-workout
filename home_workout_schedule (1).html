@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home Workout — Anterior / Posterior / Weak</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Background */
+  --bg:        #0A0A0F;
+  --surface:   #13131C;
+  --surface2:  #1A1A26;
+  --border:    #24243A;
+
+  /* Anterior — Soft Violet */
+  --ant:       #977DFF;
+  --ant-bg:    rgba(151,125,255,0.09);
+  --ant-bd:    rgba(151,125,255,0.32);
+  --ant-glow:  rgba(151,125,255,0.20);
+
+  /* Posterior — Persian Blue */
+  --post:      #4466FF;
+  --post-bg:   rgba(68,102,255,0.09);
+  --post-bd:   rgba(68,102,255,0.32);
+  --post-glow: rgba(68,102,255,0.20);
+
+  /* Weak Point — Persian Rose */
+  --weak:      #FF3D8A;
+  --weak-bg:   rgba(255,61,138,0.09);
+  --weak-bd:   rgba(255,61,138,0.32);
+  --weak-glow: rgba(255,61,138,0.20);
+
+  /* Finisher — Amber Gold */
+  --fin:       #FFB020;
+  --fin-bg:    rgba(255,176,32,0.11);
+
+  /* Rest */
+  --rest:      #44445A;
+
+  /* Text — Ghost White scale */
+  --text:      #F8F8FF;
+  --mid:       #B0B0CC;
+  --dim:       #68688A;
+}
+
+html { font-size: 16px; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: clamp(20px, 4vw, 48px) clamp(14px, 4vw, 40px) 72px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 560px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ─── HEADER ─── */
+.hdr { text-align: center; margin-bottom: clamp(24px, 4vw, 40px); animation: up .5s ease both; }
+
+.hdr-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--mid);
+  font-family: 'Syne', sans-serif; font-size: clamp(9px, 2vw, 11px);
+  font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+  padding: 6px 16px; border-radius: 100px; margin-bottom: 18px;
+}
+
+.hdr h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(28px, 7vw, 52px);
+  font-weight: 800; line-height: 1.1; letter-spacing: -.03em; margin-bottom: 12px;
+}
+.hdr h1 .ca { color: var(--ant); }
+.hdr h1 .cp { color: var(--post); }
+.hdr h1 .cw { color: var(--weak); }
+
+.hdr p {
+  color: var(--mid);
+  font-size: clamp(12px, 2.5vw, 15px);
+  font-weight: 300; line-height: 1.5;
+}
+
+/* ─── WEEK STRIP ─── */
+.week {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: clamp(4px, 1vw, 8px);
+  margin-bottom: clamp(20px, 3vw, 32px);
+  animation: up .5s .08s ease both;
+}
+
+.dc {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: clamp(8px, 2vw, 14px);
+  padding: clamp(8px, 1.5vw, 12px) 2px clamp(7px, 1.5vw, 10px);
+  text-align: center;
+}
+.dc.da { border-color: var(--ant-bd); background: var(--ant-bg); }
+.dc.dp { border-color: var(--post-bd); background: var(--post-bg); }
+.dc.dw { border-color: var(--weak-bd); background: var(--weak-bg); }
+
+.dc .dl {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(7px, 1.5vw, 9px); font-weight: 700;
+  letter-spacing: .05em; text-transform: uppercase; color: var(--dim);
+  margin-bottom: 4px;
+}
+.dc .di { font-size: clamp(12px, 2.5vw, 16px); margin-bottom: 3px; line-height: 1; }
+.dc .dn {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(6px, 1.3vw, 8px); font-weight: 800;
+  letter-spacing: .03em; text-transform: uppercase;
+}
+.dc.da .dn { color: var(--ant); }
+.dc.dp .dn { color: var(--post); }
+.dc.dw .dn { color: var(--weak); }
+.dc.dr .dn { color: var(--rest); }
+.dc .dd { font-size: clamp(6px, 1.2vw, 8px); color: var(--dim); margin-top: 3px; }
+
+/* ─── TABS ─── */
+.tabs {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: clamp(6px, 1.5vw, 10px);
+  margin-bottom: clamp(18px, 3vw, 28px);
+  animation: up .5s .14s ease both;
+}
+
+.tb {
+  padding: clamp(11px, 2vw, 16px) clamp(6px, 1.5vw, 12px);
+  border-radius: clamp(10px, 2vw, 14px);
+  border: 1.5px solid var(--border); background: var(--surface);
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(10px, 2vw, 13px); font-weight: 700;
+  color: var(--mid); cursor: pointer; text-align: center; line-height: 1.4;
+  transition: all .22s; -webkit-tap-highlight-color: transparent;
+}
+.tb.aa { background: var(--ant-bg); border-color: var(--ant); color: var(--ant); box-shadow: 0 0 20px var(--ant-glow); }
+.tb.ap { background: var(--post-bg); border-color: var(--post); color: var(--post); box-shadow: 0 0 20px var(--post-glow); }
+.tb.aw { background: var(--weak-bg); border-color: var(--weak); color: var(--weak); box-shadow: 0 0 20px var(--weak-glow); }
+
+/* ─── PANELS ─── */
+.panel { display: none; animation: up .3s ease both; }
+.panel.on { display: block; }
+
+/* ─── SECTION ─── */
+.sec { margin-bottom: clamp(14px, 2.5vw, 22px); }
+.sec-hd {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin-bottom: clamp(8px, 1.5vw, 12px); padding: 0 2px;
+}
+.badge {
+  font-family: 'Syne', sans-serif; font-size: clamp(8px, 1.5vw, 10px);
+  font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 100px;
+}
+.bma  { background: rgba(151,125,255,.14); color: var(--ant); }
+.bmp  { background: rgba(68,102,255,.14);  color: var(--post); }
+.bsec { background: rgba(248,248,255,.07); color: var(--mid); }
+.bfin { background: var(--fin-bg);         color: var(--fin); }
+.bwk  { background: rgba(255,61,138,.14);  color: var(--weak); }
+.snote { font-size: clamp(10px, 2vw, 12px); color: var(--dim); font-style: italic; font-weight: 300; }
+
+/* ─── EXERCISE CARDS ─── */
+.exl { display: flex; flex-direction: column; gap: clamp(7px, 1.5vw, 10px); }
+
+.ec {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: clamp(12px, 2.5vw, 16px);
+  padding: clamp(12px, 2vw, 16px) clamp(12px, 2.5vw, 18px);
+  display: flex; align-items: flex-start; gap: clamp(10px, 2vw, 14px);
+  -webkit-tap-highlight-color: transparent;
+  transition: border-color .2s;
+}
+.ec:active { opacity: .8; }
+
+.enum {
+  width: clamp(26px, 5vw, 32px); height: clamp(26px, 5vw, 32px);
+  border-radius: clamp(7px, 1.5vw, 9px);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(11px, 2vw, 13px); font-weight: 800;
+  flex-shrink: 0; margin-top: 1px;
+}
+.na { background: rgba(151,125,255,.14); color: var(--ant); }
+.np { background: rgba(68,102,255,.14);  color: var(--post); }
+.nf { background: var(--fin-bg);         color: var(--fin); }
+.nw { background: rgba(255,61,138,.14);  color: var(--weak); }
+
+.einfo { flex: 1; min-width: 0; }
+.ename {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(12px, 2.5vw, 15px); font-weight: 700;
+  color: var(--text); margin-bottom: 4px;
+  word-break: break-word; white-space: normal;
+  line-height: 1.3;
+}
+.esets {
+  font-size: clamp(11px, 2vw, 13px); color: var(--mid);
+  font-weight: 400; line-height: 1.5;
+}
+.eico {
+  font-size: clamp(15px, 3vw, 20px); flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ─── REST PILL ─── */
+.rpill {
+  display: inline-block; margin-top: 5px;
+  background: rgba(248,248,255,.06); border-radius: 6px;
+  padding: 2px 9px; font-size: clamp(9px, 1.8vw, 11px);
+  color: var(--mid); font-weight: 500;
+}
+
+/* ─── DIVIDER ─── */
+.div { height: 1px; background: var(--border); margin: 2px 0 clamp(14px, 2.5vw, 20px); opacity: .4; }
+
+/* ─── WEAK POINT ACCORDION ─── */
+.wp-grid { display: flex; flex-direction: column; gap: clamp(8px, 1.5vw, 12px); }
+
+.wp-block {
+  background: var(--surface); border: 1.5px solid var(--border);
+  border-radius: clamp(12px, 2.5vw, 16px); overflow: hidden;
+}
+
+.wp-head {
+  display: flex; align-items: center; gap: clamp(8px, 2vw, 12px);
+  padding: clamp(11px, 2vw, 15px) clamp(12px, 2.5vw, 16px);
+  border-bottom: 1px solid transparent;
+  cursor: pointer; user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background .2s;
+}
+.wp-head:hover { background: var(--surface2); }
+
+.wp-letter {
+  width: clamp(26px, 5vw, 30px); height: clamp(26px, 5vw, 30px);
+  border-radius: clamp(7px, 1.5vw, 9px); flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(11px, 2vw, 13px); font-weight: 800;
+  background: rgba(255,61,138,.14); color: var(--weak);
+}
+.wp-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(12px, 2.5vw, 14px); font-weight: 700;
+  flex: 1; word-break: break-word;
+}
+.wp-arr { font-size: clamp(10px, 2vw, 13px); color: var(--dim); transition: transform .22s; flex-shrink: 0; }
+.wp-arr.open { transform: rotate(180deg); }
+
+.wp-body { display: none; }
+.wp-body.on { display: block; border-top: 1px solid var(--border); }
+.wp-inner {
+  padding: clamp(10px, 2vw, 14px) clamp(12px, 2.5vw, 16px) clamp(12px, 2vw, 16px);
+  display: flex; flex-direction: column; gap: clamp(7px, 1.5vw, 10px);
+}
+
+.wp-note {
+  font-size: clamp(10px, 2vw, 12px); color: var(--dim);
+  font-style: italic; padding: 2px 0 2px;
+}
+
+.wp-ex {
+  background: var(--surface2); border-radius: clamp(9px, 2vw, 12px);
+  padding: clamp(10px, 2vw, 13px) clamp(12px, 2vw, 14px);
+  display: flex; align-items: flex-start; gap: 10px;
+}
+.wp-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--weak); flex-shrink: 0; opacity: .8;
+  margin-top: 4px;
+}
+.wp-einfo { flex: 1; min-width: 0; }
+.wp-ename {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(11px, 2.2vw, 13px); font-weight: 700;
+  color: var(--text); margin-bottom: 2px;
+  word-break: break-word;
+}
+.wp-esets { font-size: clamp(10px, 1.8vw, 12px); color: var(--mid); line-height: 1.5; }
+
+/* ─── RULES ─── */
+.rules {
+  background: var(--surface2); border: 1.5px solid var(--border);
+  border-radius: clamp(16px, 3vw, 22px);
+  padding: clamp(18px, 3vw, 28px) clamp(16px, 3vw, 24px);
+  margin-top: clamp(24px, 4vw, 36px);
+  animation: up .5s .2s ease both;
+}
+.rules-ttl {
+  font-family: 'Syne', sans-serif; font-size: clamp(8px, 1.5vw, 10px);
+  font-weight: 800; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--dim); margin-bottom: clamp(14px, 2.5vw, 20px);
+}
+.rlist { display: flex; flex-direction: column; gap: clamp(11px, 2vw, 16px); }
+.rrow { display: flex; align-items: flex-start; gap: clamp(10px, 2vw, 14px); }
+.rico {
+  width: clamp(28px, 5vw, 34px); height: clamp(28px, 5vw, 34px);
+  background: var(--surface); border-radius: clamp(8px, 1.5vw, 10px);
+  display: flex; align-items: center; justify-content: center;
+  font-size: clamp(13px, 2.5vw, 16px); flex-shrink: 0;
+}
+.rtxt { flex: 1; min-width: 0; }
+.rlbl {
+  font-family: 'Syne', sans-serif; font-size: clamp(8px, 1.5vw, 10px);
+  font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--dim); margin-bottom: 4px;
+}
+.rval { font-size: clamp(12px, 2.2vw, 14px); color: var(--text); font-weight: 400; line-height: 1.5; }
+
+.chip {
+  display: inline-block; border-radius: 7px; padding: 2px 10px;
+  font-family: 'Syne', sans-serif; font-size: clamp(11px, 2vw, 13px); font-weight: 700;
+}
+.ca2 { background: rgba(151,125,255,.14); color: var(--ant); }
+.cp2 { background: rgba(68,102,255,.14);  color: var(--post); }
+.co2 { background: var(--fin-bg);         color: var(--fin); }
+.cd2 { background: rgba(248,248,255,.07); color: var(--mid); }
+
+/* ─── RESPONSIVE breakpoints ─── */
+@media (min-width: 600px) {
+  .week { gap: 8px; }
+  .dc { border-radius: 14px; padding: 12px 4px 10px; }
+  .dc .dl { font-size: 9px; }
+  .dc .di { font-size: 16px; }
+  .dc .dn { font-size: 8px; }
+  .dc .dd { font-size: 8px; }
+}
+
+@media (min-width: 900px) {
+  body { padding: 56px 48px 80px; }
+  .wrap { max-width: 720px; }
+  .tabs { grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .ec { padding: 18px 22px; }
+}
+
+@keyframes up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-tag">&#127947; Home Workout Program</div>
+    <h1>
+      <span class="ca">Anterior</span> / <span class="cp">Posterior</span><br>
+      / <span class="cw">Weak Point</span>
+    </h1>
+    <p>Progressive overload setiap minggu &mdash; konsisten &gt; sempurna</p>
+  </div>
+
+  <!-- WEEK STRIP -->
+  <div class="week">
+    <div class="dc da">
+      <div class="dl">Sen</div><div class="di">&#128170;</div>
+      <div class="dn">ANT</div><div class="dd">Day 1</div>
+    </div>
+    <div class="dc dp">
+      <div class="dl">Sel</div><div class="di">&#128279;</div>
+      <div class="dn">POST</div><div class="dd">Day 2</div>
+    </div>
+    <div class="dc dr">
+      <div class="dl">Rab</div><div class="di">&#127807;</div>
+      <div class="dn">Rest</div><div class="dd">Day 3</div>
+    </div>
+    <div class="dc da">
+      <div class="dl">Kam</div><div class="di">&#128170;</div>
+      <div class="dn">ANT</div><div class="dd">Day 4</div>
+    </div>
+    <div class="dc dp">
+      <div class="dl">Jum</div><div class="di">&#128279;</div>
+      <div class="dn">POST</div><div class="dd">Day 5</div>
+    </div>
+    <div class="dc dw">
+      <div class="dl">Sab</div><div class="di">&#9889;</div>
+      <div class="dn">WEAK</div><div class="dd">Day 6</div>
+    </div>
+    <div class="dc dr">
+      <div class="dl">Min</div><div class="di">&#128564;</div>
+      <div class="dn">Rest</div><div class="dd">Day 7</div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tb aa" id="ta" onclick="sw('a')">&#128170; Day 1&amp;4<br>Anterior</button>
+    <button class="tb"    id="tp" onclick="sw('p')">&#128279; Day 2&amp;5<br>Posterior</button>
+    <button class="tb"    id="tw" onclick="sw('w')">&#9889; Day 6<br>Weak Point</button>
+  </div>
+
+  <!-- ══ ANTERIOR ══ -->
+  <div class="panel on" id="pa">
+
+    <div class="sec">
+      <div class="sec-hd">
+        <span class="badge bma">Main</span>
+        <span class="snote">&#177;55&ndash;60 menit</span>
+      </div>
+      <div class="exl">
+        <div class="ec">
+          <div class="enum na">1</div>
+          <div class="einfo">
+            <div class="ename">Dumbbell Bench Press</div>
+            <div class="esets">3 &times; 6&ndash;10 reps</div>
+            <div class="rpill">&#9201; Rest 2,5&ndash;3 menit</div>
+          </div>
+          <div class="eico">&#127947;</div>
+        </div>
+        <div class="ec">
+          <div class="enum na">2</div>
+          <div class="einfo">
+            <div class="ename">Goblet Squat</div>
+            <div class="esets">3 &times; 8&ndash;12 reps</div>
+            <div class="rpill">&#9201; Rest 2,5&ndash;3 menit</div>
+          </div>
+          <div class="eico">&#129461;</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="sec">
+      <div class="sec-hd"><span class="badge bsec">Secondary</span></div>
+      <div class="exl">
+        <div class="ec">
+          <div class="enum na">3</div>
+          <div class="einfo">
+            <div class="ename">Dumbbell Shoulder Press</div>
+            <div class="esets">2 &times; 6&ndash;10 reps</div>
+            <div class="rpill">&#9201; Rest 1,5&ndash;2 menit</div>
+          </div>
+          <div class="eico">&#129308;</div>
+        </div>
+        <div class="ec">
+          <div class="enum na">4</div>
+          <div class="einfo">
+            <div class="ename">Bulgarian Split Squat</div>
+            <div class="esets">2 &times; 8&ndash;10 reps / kaki</div>
+            <div class="rpill">&#9201; Rest 1,5&ndash;2 menit</div>
+          </div>
+          <div class="eico">&#129461;</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="sec">
+      <div class="sec-hd">
+        <span class="badge bfin">Finisher &amp; Accessory</span>
+      </div>
+      <div class="exl">
+        <div class="ec">
+          <div class="enum nf">5</div>
+          <div class="einfo">
+            <div class="ename">Decline / Weighted Push-Up</div>
+            <div class="esets">2 set hampir gagal</div>
+            <div class="rpill">&#9201; Rest &#177;2 menit</div>
+          </div>
+          <div class="eico">&#128165;</div>
+        </div>
+        <div class="ec">
+          <div class="enum nf">6</div>
+          <div class="einfo">
+            <div class="ename">Lateral Raise</div>
+            <div class="esets">2 &times; 12&ndash;15 reps</div>
+            <div class="rpill">&#9201; Rest 60&ndash;90 dtk</div>
+          </div>
+          <div class="eico">&#129318;</div>
+        </div>
+        <div class="ec">
+          <div class="enum nf">7</div>
+          <div class="einfo">
+            <div class="ename">Calf Raise</div>
+            <div class="esets">2 &times; 15&ndash;20 reps</div>
+            <div class="rpill">&#9201; Rest 60&ndash;90 dtk</div>
+          </div>
+          <div class="eico">&#129406;</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ POSTERIOR ══ -->
+  <div class="panel" id="pp">
+
+    <div class="sec">
+      <div class="sec-hd">
+        <span class="badge bmp">Main</span>
+        <span class="snote">&#177;50&ndash;60 menit</span>
+      </div>
+      <div class="exl">
+        <div class="ec">
+          <div class="enum np">1</div>
+          <div class="einfo">
+            <div class="ename">Pull-Up</div>
+            <div class="esets">3 set maksimal reps</div>
+            <div class="rpill">&#9201; Rest 2,5&ndash;3 menit</div>
+          </div>
+          <div class="eico">&#128313;</div>
+        </div>
+        <div class="ec">
+          <div class="enum np">2</div>
+          <div class="einfo">
+            <div class="ename">Romanian Deadlift</div>
+            <div class="esets">3 &times; 8&ndash;12 reps</div>
+            <div class="rpill">&#9201; Rest 2,5&ndash;3 menit</div>
+          </div>
+          <div class="eico">&#127947;</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="sec">
+      <div class="sec-hd"><span class="badge bsec">Secondary</span></div>
+      <div class="exl">
+        <div class="ec">
+          <div class="enum np">3</div>
+          <div class="einfo">
+            <div class="ename">One Arm Dumbbell Row</div>
+            <div class="esets">2&ndash;3 &times; 8&ndash;12 reps / sisi</div>
+            <div class="rpill">&#9201; Rest 1,5&ndash;2 menit</div>
+          </div>
+          <div class="eico">&#128170;</div>
+        </div>
+        <div class="ec">
+          <div class="enum np">4</div>
+          <div class="einfo">
+            <div class="ename">Kelso Shrugs</div>
+            <div class="esets">2 &times; 8&ndash;10 reps</div>
+            <div class="rpill">&#9201; Rest 2&ndash;3 menit</div>
+          </div>
+          <div class="eico">&#129361;</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="sec">
+      <div class="sec-hd"><span class="badge bfin">Finisher</span></div>
+      <div class="exl">
+        <div class="ec">
+          <div class="enum nf">5</div>
+          <div class="einfo">
+            <div class="ename">Rear Delt Raise</div>
+            <div class="esets">2 &times; 12&ndash;15 reps</div>
+            <div class="rpill">&#9201; Rest 60&ndash;90 dtk</div>
+          </div>
+          <div class="eico">&#128281;</div>
+        </div>
+        <div class="ec">
+          <div class="enum nf">6</div>
+          <div class="einfo">
+            <div class="ename">Weighted Chin-Ups</div>
+            <div class="esets">2 &times; failure &mdash; HEAVY</div>
+            <div class="rpill">&#9201; Rest 2&ndash;3 menit</div>
+          </div>
+          <div class="eico">&#128170;</div>
+        </div>
+        <div class="ec">
+          <div class="enum nf">7</div>
+          <div class="einfo">
+            <div class="ename">Hammer Curl</div>
+            <div class="esets">2 &times; failure</div>
+            <div class="rpill">&#9201; Rest 60&ndash;90 dtk</div>
+          </div>
+          <div class="eico">&#128170;</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ WEAK POINT ══ -->
+  <div class="panel" id="pw">
+
+    <div class="sec-hd" style="margin-bottom:14px; padding:0 2px;">
+      <span class="badge bwk">Day 6 &mdash; Weak Point</span>
+      <span class="snote">&#177;45&ndash;55 menit</span>
+    </div>
+    <p style="font-size:clamp(11px,2vw,13px); color:var(--dim); margin-bottom:16px; padding:0 2px; line-height:1.5;">
+      Ketuk setiap blok untuk melihat latihan. Pilih sesuai kebutuhan kamu.
+    </p>
+
+    <div class="wp-grid">
+
+      <!-- A -->
+      <div class="wp-block">
+        <div class="wp-head" onclick="tog(this)">
+          <div class="wp-letter">A</div>
+          <div class="wp-title">Biceps <span style="color:var(--dim);font-size:11px;font-weight:400;">(Arm Day)</span></div>
+          <div class="wp-arr">&#9660;</div>
+        </div>
+        <div class="wp-body">
+          <div class="wp-inner">
+            <p class="wp-note">Weighted Chin-Ups hanya di Back Day &mdash; tidak diulang di sini</p>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Recline Curl</div><div class="wp-esets">2 &times; failure &middot; FULL ROM &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Supinating Bicep Curl</div><div class="wp-esets">2 &times; failure &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Hammer Curl</div><div class="wp-esets">2 &times; failure &middot; Rest 60&ndash;90 dtk</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- B -->
+      <div class="wp-block">
+        <div class="wp-head" onclick="tog(this)">
+          <div class="wp-letter">B</div>
+          <div class="wp-title">Triceps</div>
+          <div class="wp-arr">&#9660;</div>
+        </div>
+        <div class="wp-body">
+          <div class="wp-inner">
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Overhead DB Triceps Extension</div><div class="wp-esets">2 &times; 10&ndash;12 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Skullcrusher</div><div class="wp-esets">2 &times; 8&ndash;12 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- C -->
+      <div class="wp-block">
+        <div class="wp-head" onclick="tog(this)">
+          <div class="wp-letter">C</div>
+          <div class="wp-title">Rear Delt</div>
+          <div class="wp-arr">&#9660;</div>
+        </div>
+        <div class="wp-body">
+          <div class="wp-inner">
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Rear Delt Raise</div><div class="wp-esets">2 &times; 12&ndash;15 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- D -->
+      <div class="wp-block">
+        <div class="wp-head" onclick="tog(this)">
+          <div class="wp-letter">D</div>
+          <div class="wp-title">Forearm</div>
+          <div class="wp-arr">&#9660;</div>
+        </div>
+        <div class="wp-body">
+          <div class="wp-inner">
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Barbell Reverse Curl</div><div class="wp-esets">2 &times; 10&ndash;12 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Wrist Curl</div><div class="wp-esets">2 &times; 12&ndash;15 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Wrist Extension</div><div class="wp-esets">1&ndash;2 &times; 12&ndash;15 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- E -->
+      <div class="wp-block">
+        <div class="wp-head" onclick="tog(this)">
+          <div class="wp-letter">E</div>
+          <div class="wp-title">Calf <span style="color:var(--weak);font-size:11px;font-weight:400;">(Fokus Utama)</span></div>
+          <div class="wp-arr">&#9660;</div>
+        </div>
+        <div class="wp-body">
+          <div class="wp-inner">
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Standing Calf Raise</div><div class="wp-esets">3 &times; 15&ndash;20 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- F -->
+      <div class="wp-block">
+        <div class="wp-head" onclick="tog(this)">
+          <div class="wp-letter">F</div>
+          <div class="wp-title">Abs</div>
+          <div class="wp-arr">&#9660;</div>
+        </div>
+        <div class="wp-body">
+          <div class="wp-inner">
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Leg Raise</div><div class="wp-esets">3 &times; 10&ndash;15 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Crunch</div><div class="wp-esets">2 &times; 12&ndash;15 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Russian Twist</div><div class="wp-esets">2 &times; 16&ndash;24 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- RULES -->
+  <div class="rules">
+    <div class="rules-ttl">&#9889; Aturan Rest &mdash; Jangan Dilanggar</div>
+    <div class="rlist">
+      <div class="rrow">
+        <div class="rico">&#127919;</div>
+        <div class="rtxt">
+          <div class="rlbl">Main Lift</div>
+          <div class="rval"><span class="chip ca2">2,5&ndash;3 menit</span></div>
+        </div>
+      </div>
+      <div class="rrow">
+        <div class="rico">&#128170;</div>
+        <div class="rtxt">
+          <div class="rlbl">Secondary</div>
+          <div class="rval"><span class="chip cp2">1,5&ndash;2 menit</span></div>
+        </div>
+      </div>
+      <div class="rrow">
+        <div class="rico">&#9201;</div>
+        <div class="rtxt">
+          <div class="rlbl">Isolasi</div>
+          <div class="rval"><span class="chip cd2">60&ndash;90 detik</span></div>
+        </div>
+      </div>
+      <div class="rrow">
+        <div class="rico">&#128165;</div>
+        <div class="rtxt">
+          <div class="rlbl">Finisher</div>
+          <div class="rval"><span class="chip co2">&#177;2 menit</span></div>
+        </div>
+      </div>
+      <div class="rrow">
+        <div class="rico">&#128336;</div>
+        <div class="rtxt">
+          <div class="rlbl">Set Terakhir</div>
+          <div class="rval">Hampir gagal &mdash; <span class="chip co2">1&ndash;2 RIR</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<script>
+  function sw(t) {
+    ['a','p','w'].forEach(function(x) {
+      document.getElementById('t'+x).className = 'tb' + (x===t ? ' a'+x : '');
+      document.getElementById('p'+x).className = 'panel' + (x===t ? ' on' : '');
+    });
+  }
+  function tog(hd) {
+    var arr  = hd.querySelector('.wp-arr');
+    var body = hd.nextElementSibling;
+    var open = body.classList.toggle('on');
+    arr.classList.toggle('open', open);
+  }
+</script>
+</body>
+</html>
