@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0A0A0F">
 <title>Home Workout — Anterior / Posterior / Weak</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -67,6 +67,7 @@ html { font-size: 16px; }
 }
 
 body {
+  line-height: 1.5;
   font-family: 'DM Sans', sans-serif;
   background: var(--bg);
   color: var(--text);
@@ -82,47 +83,63 @@ body {
 }
 
 /* ─── HEADER ─── */
-.hdr { text-align: center; margin-bottom: clamp(24px, 4vw, 40px); animation: up .5s var(--ease-out) both; }
-
-.hdr-tag {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,0) 60%), var(--surface2);
-  border: 1px solid rgba(255,255,255,.08);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
-  color: var(--mid);
-  font-family: 'Syne', sans-serif; font-size: clamp(9px, 2vw, 11px);
-  font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
-  padding: 6px 16px; border-radius: 100px; margin-bottom: 18px;
+.hdr {
+  container-type: inline-size;
+  text-align: center;
+  margin-bottom: clamp(20px, 4vw, 32px);
+  padding: clamp(20px, 4vw, 30px) clamp(16px, 4vw, 28px) clamp(18px, 3.5vw, 26px);
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: clamp(22px, 5vw, 30px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+  animation: up .5s var(--ease-out) both;
 }
-
+.hdr-tag {
+  display: flex; align-items: center; justify-content: center; gap: 9px;
+  font-family: 'Syne', sans-serif; font-size: clamp(10px, 2.4vw, 12px);
+  font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  line-height: 1.4; color: var(--mid);
+  margin-bottom: clamp(12px, 2.5vw, 16px);
+}
+.hdr-dot {
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--ant); flex-shrink: 0;
+  box-shadow: 0 0 10px var(--ant-glow);
+}
 .hdr h1 {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(28px, 7vw, 52px);
-  font-weight: 800; line-height: 1.1; letter-spacing: -.03em; margin-bottom: 12px;
+  font-weight: 800; text-transform: uppercase;
+  line-height: 1.25; letter-spacing: 0;
+  margin-bottom: clamp(10px, 2vw, 14px);
 }
+.hdr h1 span { display: block; white-space: nowrap; }
+.hdr h1 .ca, .hdr h1 .cp { font-size: min(7.4vw, 40px); font-size: min(8.6cqw, 42px); }
 .hdr h1 .ca { color: var(--ant); }
 .hdr h1 .cp { color: var(--post); }
-.hdr h1 .cw { color: var(--weak); }
-
+.hdr h1 .cw { color: var(--weak); font-size: min(5.6vw, 28px); font-size: min(6.9cqw, 28px); margin-top: 2px; }
 .hdr p {
-  color: var(--mid);
-  font-size: clamp(12px, 2.5vw, 15px);
-  font-weight: 300; line-height: 1.5;
+  color: var(--dim);
+  font-size: clamp(11px, 2.7vw, 13px);
+  font-weight: 500; line-height: 1.5; letter-spacing: .02em;
 }
 
 /* ─── WEEK STRIP ─── */
 .week {
-  display: grid; grid-template-columns: repeat(7, 1fr);
+  display: grid; grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: clamp(4px, 1vw, 8px);
   margin-bottom: clamp(20px, 3vw, 32px);
   animation: up .5s .08s var(--ease-out) both;
 }
 
 .dc {
+  min-width: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 4px;
+  min-height: clamp(62px, 17vw, 80px);
   background: var(--surface); border: 1.5px solid var(--border);
   border-radius: clamp(8px, 2vw, 14px);
-  padding: clamp(8px, 1.5vw, 12px) 2px clamp(7px, 1.5vw, 10px);
-  text-align: center;
+  padding: 8px 2px;
+  text-align: center; line-height: 1.3;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
   transition: transform var(--dur-fast) var(--ease-out), border-color var(--dur-med) var(--ease-out);
   -webkit-tap-highlight-color: transparent;
@@ -134,21 +151,20 @@ body {
 
 .dc .dl {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(7px, 1.5vw, 9px); font-weight: 700;
-  letter-spacing: .05em; text-transform: uppercase; color: var(--dim);
-  margin-bottom: 4px;
+  font-size: clamp(9px, 2.2vw, 10px); font-weight: 700;
+  letter-spacing: 0; text-transform: uppercase; color: var(--mid);
+  line-height: 1.3;
 }
-.dc .di { font-size: clamp(12px, 2.5vw, 16px); margin-bottom: 3px; line-height: 1; }
 .dc .dn {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(6px, 1.3vw, 8px); font-weight: 800;
-  letter-spacing: .03em; text-transform: uppercase;
+  font-size: clamp(7px, 1.9vw, 9px); font-weight: 800;
+  letter-spacing: 0; text-transform: uppercase; line-height: 1.3;
 }
 .dc.da .dn { color: var(--ant); }
 .dc.dp .dn { color: var(--post); }
 .dc.dw .dn { color: var(--weak); }
 .dc.dr .dn { color: var(--rest); }
-.dc .dd { font-size: clamp(6px, 1.2vw, 8px); color: var(--dim); margin-top: 3px; }
+.dc .dd { font-size: clamp(7px, 1.9vw, 9px); color: var(--dim); line-height: 1.3; }
 
 /* ─── TABS ─── */
 .tabs {
@@ -172,12 +188,13 @@ body {
 }
 
 .tb {
+  min-width: 0; overflow-wrap: break-word;
   padding: clamp(11px, 2vw, 16px) clamp(6px, 1.5vw, 12px);
   border-radius: clamp(10px, 2vw, 14px);
   border: 1.5px solid transparent; background: transparent;
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(10px, 2vw, 13px); font-weight: 700;
-  color: var(--mid); cursor: pointer; text-align: center; line-height: 1.4;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(11px, 2.6vw, 14px); font-weight: 700;
+  color: var(--mid); cursor: pointer; text-align: center; line-height: 1.55;
   transition: background var(--dur-med) var(--ease-out), border-color var(--dur-med) var(--ease-out),
               color var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out),
               transform var(--dur-fast) var(--ease-out);
@@ -201,14 +218,14 @@ body {
 .badge {
   font-family: 'Syne', sans-serif; font-size: clamp(8px, 1.5vw, 10px);
   font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
-  padding: 4px 11px; border-radius: 100px;
+  padding: 5px 11px; line-height: 1.4; border-radius: 100px;
 }
 .bma  { background: rgba(151,125,255,.14); color: var(--ant); }
 .bmp  { background: rgba(68,102,255,.14);  color: var(--post); }
 .bsec { background: rgba(248,248,255,.07); color: var(--mid); }
 .bfin { background: var(--fin-bg);         color: var(--fin); }
 .bwk  { background: rgba(255,61,138,.14);  color: var(--weak); }
-.snote { font-size: clamp(10px, 2vw, 12px); color: var(--dim); font-style: italic; font-weight: 300; }
+.snote { line-height: 1.4; font-size: clamp(10px, 2vw, 12px); color: var(--dim); font-style: italic; font-weight: 300; }
 
 /* ─── EXERCISE CARDS ─── */
 .exl { display: flex; flex-direction: column; gap: clamp(7px, 1.5vw, 10px); }
@@ -242,11 +259,11 @@ body {
 
 .einfo { flex: 1; min-width: 0; }
 .ename {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(12px, 2.5vw, 15px); font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(13px, 3vw, 16px); font-weight: 700;
   color: var(--text); margin-bottom: 4px;
-  word-break: break-word; white-space: normal;
-  line-height: 1.3;
+  overflow-wrap: break-word; white-space: normal;
+  line-height: 1.5; padding-bottom: 2px;
 }
 .esets {
   font-size: clamp(11px, 2vw, 13px); color: var(--mid);
@@ -261,7 +278,7 @@ body {
 .rpill {
   display: inline-block; margin-top: 5px;
   background: rgba(248,248,255,.06); border-radius: 6px;
-  padding: 2px 9px; font-size: clamp(9px, 1.8vw, 11px);
+  padding: 3px 9px; line-height: 1.4; font-size: clamp(9px, 1.8vw, 11px);
   color: var(--mid); font-weight: 500;
 }
 
@@ -269,17 +286,17 @@ body {
 .div { height: 1px; background: var(--border); margin: 2px 0 clamp(14px, 2.5vw, 20px); opacity: .4; }
 
 /* ─── WEAK POINT ACCORDION ─── */
-.wp-grid { display: flex; flex-direction: column; gap: clamp(8px, 1.5vw, 12px); }
+.wp-grid { display: flex; flex-direction: column; gap: clamp(6px, 1.2vw, 8px); }
 
 .wp-block {
   background: var(--surface); border: 1.5px solid var(--border);
-  border-radius: clamp(12px, 2.5vw, 16px); overflow: hidden;
+  border-radius: clamp(10px, 2vw, 14px); overflow: hidden;
   contain: layout;
 }
 
 .wp-head {
   display: flex; align-items: center; gap: clamp(8px, 2vw, 12px);
-  padding: clamp(11px, 2vw, 15px) clamp(12px, 2.5vw, 16px);
+  padding: clamp(8px, 1.6vw, 10px) clamp(10px, 2vw, 14px);
   cursor: pointer; user-select: none;
   -webkit-tap-highlight-color: transparent;
   transition: background var(--dur-med) var(--ease-out);
@@ -290,19 +307,19 @@ body {
 .wp-head.active { background: var(--weak-bg); }
 
 .wp-letter {
-  width: clamp(26px, 5vw, 30px); height: clamp(26px, 5vw, 30px);
-  border-radius: clamp(7px, 1.5vw, 9px); flex-shrink: 0;
+  width: clamp(22px, 4.4vw, 26px); height: clamp(22px, 4.4vw, 26px);
+  border-radius: 7px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center;
   font-family: 'Syne', sans-serif;
-  font-size: clamp(11px, 2vw, 13px); font-weight: 800;
+  font-size: clamp(10px, 2vw, 12px); font-weight: 800;
   background: rgba(255,61,138,.14); color: var(--weak);
   transition: transform var(--dur-med) var(--ease-spring);
 }
 .wp-head.active .wp-letter { transform: scale(1.08); }
 .wp-title {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(12px, 2.5vw, 14px); font-weight: 700;
-  flex: 1; word-break: break-word;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(13px, 3vw, 15px); font-weight: 700;
+  line-height: 1.5; flex: 1; min-width: 0; overflow-wrap: break-word; line-height: 1.4;
 }
 .wp-arr {
   font-size: clamp(10px, 2vw, 13px); color: var(--dim); flex-shrink: 0;
@@ -320,42 +337,43 @@ body {
 .wp-inner {
   overflow: hidden;
   min-height: 0;
-  padding: clamp(10px, 2vw, 14px) clamp(12px, 2.5vw, 16px) clamp(12px, 2vw, 16px);
-  display: flex; flex-direction: column; gap: clamp(7px, 1.5vw, 10px);
+  padding: 0 clamp(10px, 2vw, 14px);
+  display: flex; flex-direction: column; gap: 6px;
   border-top: 1px solid transparent;
   opacity: 0;
   transform: translateY(-4px);
-  transition: border-color var(--dur-slow) var(--ease-out), opacity var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out);
+  transition: border-color var(--dur-slow) var(--ease-out), opacity var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out), padding var(--dur-slow) var(--ease-out);
 }
 .wp-body.on .wp-inner {
   border-top-color: var(--border);
+  padding-top: 8px; padding-bottom: 10px;
   opacity: 1;
   transform: translateY(0);
 }
 
 .wp-note {
   font-size: clamp(10px, 2vw, 12px); color: var(--dim);
-  font-style: italic; padding: 2px 0 2px;
+  font-style: italic; line-height: 1.5; padding: 0;
 }
 
 .wp-ex {
-  background: var(--surface2); border-radius: clamp(9px, 2vw, 12px);
-  padding: clamp(10px, 2vw, 13px) clamp(12px, 2vw, 14px);
+  background: var(--surface2); border-radius: 10px;
+  padding: 8px 12px;
   display: flex; align-items: flex-start; gap: 10px;
 }
 .wp-dot {
   width: 7px; height: 7px; border-radius: 50%;
   background: var(--weak); flex-shrink: 0; opacity: .8;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 .wp-einfo { flex: 1; min-width: 0; }
 .wp-ename {
-  font-family: 'Syne', sans-serif;
-  font-size: clamp(11px, 2.2vw, 13px); font-weight: 700;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(12px, 2.8vw, 14px); font-weight: 700;
   color: var(--text); margin-bottom: 2px;
-  word-break: break-word;
+  line-height: 1.5; padding-bottom: 1px; overflow-wrap: break-word;
 }
-.wp-esets { font-size: clamp(10px, 1.8vw, 12px); color: var(--mid); line-height: 1.5; }
+.wp-esets { font-size: clamp(10px, 1.8vw, 12px); color: var(--mid); line-height: 1.5; padding-bottom: 1px; }
 
 /* ─── RULES ─── */
 .rules {
@@ -380,6 +398,7 @@ body {
   display: flex; align-items: center; justify-content: center;
   font-size: clamp(13px, 2.5vw, 16px); flex-shrink: 0;
 }
+.rdot { width: 8px; height: 8px; border-radius: 50%; background: var(--dim); }
 .rtxt { flex: 1; min-width: 0; }
 .rlbl {
   font-family: 'Syne', sans-serif; font-size: clamp(8px, 1.5vw, 10px);
@@ -398,15 +417,6 @@ body {
 .cd2 { background: rgba(248,248,255,.07); color: var(--mid); }
 
 /* ─── RESPONSIVE breakpoints ─── */
-@media (min-width: 600px) {
-  .week { gap: 8px; }
-  .dc { border-radius: 14px; padding: 12px 4px 10px; }
-  .dc .dl { font-size: 9px; }
-  .dc .di { font-size: 16px; }
-  .dc .dn { font-size: 8px; }
-  .dc .dd { font-size: 8px; }
-}
-
 @media (min-width: 900px) {
   body { padding: 56px 48px 80px; }
   .wrap { max-width: 720px; }
@@ -425,51 +435,52 @@ body {
 
   <!-- HEADER -->
   <div class="hdr">
-    <div class="hdr-tag">&#127947; Home Workout Program</div>
+    <div class="hdr-tag"><span class="hdr-dot"></span>Home Workout Program</div>
     <h1>
-      <span class="ca">Anterior</span> / <span class="cp">Posterior</span><br>
-      / <span class="cw">Weak Point</span>
+      <span class="ca">Anterior</span>
+      <span class="cp">Posterior</span>
+      <span class="cw">+ Weak Point</span>
     </h1>
-    <p>Progressive overload setiap minggu &mdash; konsisten &gt; sempurna</p>
+    <p>Progressive overload &middot; Consistency &middot; Recovery</p>
   </div>
 
   <!-- WEEK STRIP -->
   <div class="week">
     <div class="dc da">
-      <div class="dl">Sen</div><div class="di">&#128170;</div>
-      <div class="dn">ANT</div><div class="dd">Day 1</div>
+      <div class="dl">Sen</div>
+      <div class="dn">ANT</div><div class="dd">D1</div>
     </div>
     <div class="dc dp">
-      <div class="dl">Sel</div><div class="di">&#128279;</div>
-      <div class="dn">POST</div><div class="dd">Day 2</div>
+      <div class="dl">Sel</div>
+      <div class="dn">POST</div><div class="dd">D2</div>
     </div>
     <div class="dc dr">
-      <div class="dl">Rab</div><div class="di">&#127807;</div>
-      <div class="dn">Rest</div><div class="dd">Day 3</div>
+      <div class="dl">Rab</div>
+      <div class="dn">REST</div><div class="dd">D3</div>
     </div>
     <div class="dc da">
-      <div class="dl">Kam</div><div class="di">&#128170;</div>
-      <div class="dn">ANT</div><div class="dd">Day 4</div>
+      <div class="dl">Kam</div>
+      <div class="dn">ANT</div><div class="dd">D4</div>
     </div>
     <div class="dc dp">
-      <div class="dl">Jum</div><div class="di">&#128279;</div>
-      <div class="dn">POST</div><div class="dd">Day 5</div>
+      <div class="dl">Jum</div>
+      <div class="dn">POST</div><div class="dd">D5</div>
     </div>
     <div class="dc dw">
-      <div class="dl">Sab</div><div class="di">&#9889;</div>
-      <div class="dn">WEAK</div><div class="dd">Day 6</div>
+      <div class="dl">Sab</div>
+      <div class="dn">WEAK</div><div class="dd">D6</div>
     </div>
     <div class="dc dr">
-      <div class="dl">Min</div><div class="di">&#128564;</div>
-      <div class="dn">Rest</div><div class="dd">Day 7</div>
+      <div class="dl">Min</div>
+      <div class="dn">REST</div><div class="dd">D7</div>
     </div>
   </div>
 
   <!-- TABS -->
   <div class="tabs">
-    <button class="tb aa" id="ta" onclick="sw('a')">&#128170; Day 1&amp;4<br>Anterior</button>
-    <button class="tb"    id="tp" onclick="sw('p')">&#128279; Day 2&amp;5<br>Posterior</button>
-    <button class="tb"    id="tw" onclick="sw('w')">&#9889; Day 6<br>Weak Point</button>
+    <button class="tb aa" id="ta" onclick="sw('a')">Day 1 &amp; 4<br>Anterior</button>
+    <button class="tb"    id="tp" onclick="sw('p')">Day 2 &amp; 5<br>Posterior</button>
+    <button class="tb"    id="tw" onclick="sw('w')">Day 6<br>Weak Point</button>
   </div>
 
   <!-- ══ ANTERIOR ══ -->
@@ -484,20 +495,18 @@ body {
         <div class="ec">
           <div class="enum na">1</div>
           <div class="einfo">
-            <div class="ename">Dumbbell Bench Press</div>
-            <div class="esets">3 &times; 6&ndash;10 reps</div>
-            <div class="rpill">&#9201; Rest 2,5&ndash;3 menit</div>
+            <div class="ename">Weighted Push Up</div>
+            <div class="esets">3 &times; 6 reps</div>
+            <div class="rpill">Rest 2,5&ndash;3 menit</div>
           </div>
-          <div class="eico">&#127947;</div>
         </div>
         <div class="ec">
           <div class="enum na">2</div>
           <div class="einfo">
             <div class="ename">Goblet Squat</div>
-            <div class="esets">3 &times; 8&ndash;12 reps</div>
-            <div class="rpill">&#9201; Rest 2,5&ndash;3 menit</div>
+            <div class="esets">3 &times; 8 reps</div>
+            <div class="rpill">Rest 2,5&ndash;3 menit</div>
           </div>
-          <div class="eico">&#129461;</div>
         </div>
       </div>
     </div>
@@ -511,19 +520,17 @@ body {
           <div class="enum na">3</div>
           <div class="einfo">
             <div class="ename">Dumbbell Shoulder Press</div>
-            <div class="esets">2 &times; 6&ndash;10 reps</div>
-            <div class="rpill">&#9201; Rest 1,5&ndash;2 menit</div>
+            <div class="esets">2 &times; 6 reps</div>
+            <div class="rpill">Rest 1,5&ndash;2 menit</div>
           </div>
-          <div class="eico">&#129308;</div>
         </div>
         <div class="ec">
           <div class="enum na">4</div>
           <div class="einfo">
             <div class="ename">Bulgarian Split Squat</div>
-            <div class="esets">2 &times; 8&ndash;10 reps / kaki</div>
-            <div class="rpill">&#9201; Rest 1,5&ndash;2 menit</div>
+            <div class="esets">2 &times; 8 reps / kaki</div>
+            <div class="rpill">Rest 1,5&ndash;2 menit</div>
           </div>
-          <div class="eico">&#129461;</div>
         </div>
       </div>
     </div>
@@ -538,29 +545,26 @@ body {
         <div class="ec">
           <div class="enum nf">5</div>
           <div class="einfo">
-            <div class="ename">Decline / Weighted Push-Up</div>
-            <div class="esets">2 set hampir gagal</div>
-            <div class="rpill">&#9201; Rest &#177;2 menit</div>
+            <div class="ename">Weighted Decline Push Up</div>
+            <div class="esets">2 &times; hampir gagal</div>
+            <div class="rpill">Rest &#177;2 menit</div>
           </div>
-          <div class="eico">&#128165;</div>
         </div>
         <div class="ec">
           <div class="enum nf">6</div>
           <div class="einfo">
             <div class="ename">Lateral Raise</div>
-            <div class="esets">2 &times; 12&ndash;15 reps</div>
-            <div class="rpill">&#9201; Rest 60&ndash;90 dtk</div>
+            <div class="esets">2 &times; 8 reps</div>
+            <div class="rpill">Rest 60&ndash;90 dtk</div>
           </div>
-          <div class="eico">&#129318;</div>
         </div>
         <div class="ec">
           <div class="enum nf">7</div>
           <div class="einfo">
             <div class="ename">Calf Raise</div>
-            <div class="esets">2 &times; 15&ndash;20 reps</div>
-            <div class="rpill">&#9201; Rest 60&ndash;90 dtk</div>
+            <div class="esets">2 &times; 12 reps</div>
+            <div class="rpill">Rest 60&ndash;90 dtk</div>
           </div>
-          <div class="eico">&#129406;</div>
         </div>
       </div>
     </div>
@@ -579,20 +583,18 @@ body {
         <div class="ec">
           <div class="enum np">1</div>
           <div class="einfo">
-            <div class="ename">Pull-Up</div>
-            <div class="esets">3 set maksimal reps</div>
-            <div class="rpill">&#9201; Rest 2,5&ndash;3 menit</div>
+            <div class="ename">Weighted Pull Up</div>
+            <div class="esets">3 &times; 8 reps</div>
+            <div class="rpill">Rest 2,5&ndash;3 menit</div>
           </div>
-          <div class="eico">&#128313;</div>
         </div>
         <div class="ec">
           <div class="enum np">2</div>
           <div class="einfo">
             <div class="ename">Romanian Deadlift</div>
-            <div class="esets">3 &times; 8&ndash;12 reps</div>
-            <div class="rpill">&#9201; Rest 2,5&ndash;3 menit</div>
+            <div class="esets">3 &times; 8 reps</div>
+            <div class="rpill">Rest 2,5&ndash;3 menit</div>
           </div>
-          <div class="eico">&#127947;</div>
         </div>
       </div>
     </div>
@@ -605,20 +607,18 @@ body {
         <div class="ec">
           <div class="enum np">3</div>
           <div class="einfo">
-            <div class="ename">One Arm Dumbbell Row</div>
-            <div class="esets">2&ndash;3 &times; 8&ndash;12 reps / sisi</div>
-            <div class="rpill">&#9201; Rest 1,5&ndash;2 menit</div>
+            <div class="ename">Underhand Grip Row</div>
+            <div class="esets">2 &times; 8 reps</div>
+            <div class="rpill">Rest 1,5&ndash;2 menit</div>
           </div>
-          <div class="eico">&#128170;</div>
         </div>
         <div class="ec">
           <div class="enum np">4</div>
           <div class="einfo">
-            <div class="ename">Kelso Shrugs</div>
-            <div class="esets">2 &times; 8&ndash;10 reps</div>
-            <div class="rpill">&#9201; Rest 2&ndash;3 menit</div>
+            <div class="ename">Wide Grip Row</div>
+            <div class="esets">2 &times; 8 reps</div>
+            <div class="rpill">Rest 2&ndash;3 menit</div>
           </div>
-          <div class="eico">&#129361;</div>
         </div>
       </div>
     </div>
@@ -632,28 +632,25 @@ body {
           <div class="enum nf">5</div>
           <div class="einfo">
             <div class="ename">Rear Delt Raise</div>
-            <div class="esets">2 &times; 12&ndash;15 reps</div>
-            <div class="rpill">&#9201; Rest 60&ndash;90 dtk</div>
+            <div class="esets">2 &times; 12 reps</div>
+            <div class="rpill">Rest 60&ndash;90 dtk</div>
           </div>
-          <div class="eico">&#128281;</div>
         </div>
         <div class="ec">
           <div class="enum nf">6</div>
           <div class="einfo">
-            <div class="ename">Weighted Chin-Ups</div>
+            <div class="ename">Weighted Chin Up</div>
             <div class="esets">2 &times; failure &mdash; HEAVY</div>
-            <div class="rpill">&#9201; Rest 2&ndash;3 menit</div>
+            <div class="rpill">Rest 2&ndash;3 menit</div>
           </div>
-          <div class="eico">&#128170;</div>
         </div>
         <div class="ec">
           <div class="enum nf">7</div>
           <div class="einfo">
             <div class="ename">Hammer Curl</div>
-            <div class="esets">2 &times; failure</div>
-            <div class="rpill">&#9201; Rest 60&ndash;90 dtk</div>
+            <div class="esets">2 &times; 8 reps</div>
+            <div class="rpill">Rest 60&ndash;90 dtk</div>
           </div>
-          <div class="eico">&#128170;</div>
         </div>
       </div>
     </div>
@@ -682,10 +679,10 @@ body {
         </div>
         <div class="wp-body">
           <div class="wp-inner">
-            <p class="wp-note">Weighted Chin-Ups hanya di Back Day &mdash; tidak diulang di sini</p>
-            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Recline Curl</div><div class="wp-esets">2 &times; failure &middot; FULL ROM &middot; Rest 60&ndash;90 dtk</div></div></div>
-            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Supinating Bicep Curl</div><div class="wp-esets">2 &times; failure &middot; Rest 60&ndash;90 dtk</div></div></div>
-            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Hammer Curl</div><div class="wp-esets">2 &times; failure &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <p class="wp-note">Weighted Chin Up hanya di Back Day &mdash; tidak diulang di sini</p>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Recline Curl</div><div class="wp-esets">2 &times; 8 reps &middot; FULL ROM &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Supinating Bicep Curl</div><div class="wp-esets">2 &times; 8 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Hammer Curl</div><div class="wp-esets">2 &times; 8 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
           </div>
         </div>
       </div>
@@ -699,8 +696,8 @@ body {
         </div>
         <div class="wp-body">
           <div class="wp-inner">
-            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Overhead DB Triceps Extension</div><div class="wp-esets">2 &times; 10&ndash;12 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
-            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Skullcrusher</div><div class="wp-esets">2 &times; 8&ndash;12 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Overhead DB Triceps Extension</div><div class="wp-esets">2 &times; 8 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Skullcrusher</div><div class="wp-esets">2 &times; 8 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
           </div>
         </div>
       </div>
@@ -714,7 +711,7 @@ body {
         </div>
         <div class="wp-body">
           <div class="wp-inner">
-            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Rear Delt Raise</div><div class="wp-esets">2 &times; 12&ndash;15 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Rear Delt Raise</div><div class="wp-esets">2 &times; 12 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
           </div>
         </div>
       </div>
@@ -728,9 +725,9 @@ body {
         </div>
         <div class="wp-body">
           <div class="wp-inner">
-            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Barbell Reverse Curl</div><div class="wp-esets">2 &times; 10&ndash;12 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
-            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Wrist Curl</div><div class="wp-esets">2 &times; 12&ndash;15 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
-            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Wrist Extension</div><div class="wp-esets">1&ndash;2 &times; 12&ndash;15 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Wrist Curl</div><div class="wp-esets">2 &times; 8 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Wrist Extension</div><div class="wp-esets">2 &times; 8 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Barbell Reverse Curl</div><div class="wp-esets">2 &times; 8 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
           </div>
         </div>
       </div>
@@ -744,7 +741,7 @@ body {
         </div>
         <div class="wp-body">
           <div class="wp-inner">
-            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Standing Calf Raise</div><div class="wp-esets">3 &times; 15&ndash;20 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Standing Calf Raise</div><div class="wp-esets">2 &times; 12 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
           </div>
         </div>
       </div>
@@ -758,9 +755,9 @@ body {
         </div>
         <div class="wp-body">
           <div class="wp-inner">
-            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Leg Raise</div><div class="wp-esets">3 &times; 10&ndash;15 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
-            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Crunch</div><div class="wp-esets">2 &times; 12&ndash;15 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
-            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Russian Twist</div><div class="wp-esets">2 &times; 16&ndash;24 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Leg Raise</div><div class="wp-esets">3 &times; 8 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Crunch</div><div class="wp-esets">2 &times; 8 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
+            <div class="wp-ex"><div class="wp-dot"></div><div class="wp-einfo"><div class="wp-ename">Russian Twist</div><div class="wp-esets">2 &times; 8 reps &middot; Rest 60&ndash;90 dtk</div></div></div>
           </div>
         </div>
       </div>
@@ -770,38 +767,38 @@ body {
 
   <!-- RULES -->
   <div class="rules">
-    <div class="rules-ttl">&#9889; Aturan Rest &mdash; Jangan Dilanggar</div>
+    <div class="rules-ttl">Aturan Rest &mdash; Jangan Dilanggar</div>
     <div class="rlist">
       <div class="rrow">
-        <div class="rico">&#127919;</div>
+        <div class="rico"><span class="rdot"></span></div>
         <div class="rtxt">
           <div class="rlbl">Main Lift</div>
           <div class="rval"><span class="chip ca2">2,5&ndash;3 menit</span></div>
         </div>
       </div>
       <div class="rrow">
-        <div class="rico">&#128170;</div>
+        <div class="rico"><span class="rdot"></span></div>
         <div class="rtxt">
           <div class="rlbl">Secondary</div>
           <div class="rval"><span class="chip cp2">1,5&ndash;2 menit</span></div>
         </div>
       </div>
       <div class="rrow">
-        <div class="rico">&#9201;</div>
+        <div class="rico"><span class="rdot"></span></div>
         <div class="rtxt">
           <div class="rlbl">Isolasi</div>
           <div class="rval"><span class="chip cd2">60&ndash;90 detik</span></div>
         </div>
       </div>
       <div class="rrow">
-        <div class="rico">&#128165;</div>
+        <div class="rico"><span class="rdot"></span></div>
         <div class="rtxt">
           <div class="rlbl">Finisher</div>
           <div class="rval"><span class="chip co2">&#177;2 menit</span></div>
         </div>
       </div>
       <div class="rrow">
-        <div class="rico">&#128336;</div>
+        <div class="rico"><span class="rdot"></span></div>
         <div class="rtxt">
           <div class="rlbl">Set Terakhir</div>
           <div class="rval">Hampir gagal &mdash; <span class="chip co2">1&ndash;2 RIR</span></div>
