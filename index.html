@@ -90,7 +90,7 @@ h1{font-size:clamp(28px,7vw,36px);font-weight:700;line-height:1.15;letter-spacin
 .dsq.sel{background:var(--k);color:#0D0D12;transform:translateY(-2px);box-shadow:0 8px 22px color-mix(in srgb,var(--k) 38%,transparent)}
 .dsq.sel .dk{color:rgba(13,13,18,.65)}.dsq.sel .ic svg{stroke:#0D0D12}.dsq.sel.today .ic::before{background:#0D0D12}
 .dsq[data-k=r].sel{background:#3A3A4D;color:#F5F5FB}.dsq[data-k=r].sel .dk{color:#A9A9C2}
-.tabs{position:sticky;top:10px;z-index:20;display:grid;grid-template-columns:repeat(3,1fr);margin:22px 0 4px;background:var(--glass);backdrop-filter:blur(14px) saturate(150%);-webkit-backdrop-filter:blur(14px) saturate(150%);border-bottom:1px solid var(--line)}
+.tabs{position:relative;display:grid;grid-template-columns:repeat(3,1fr);margin:22px 0 4px;border-bottom:1px solid var(--line)}
 .tab{padding:13px 4px;font-family:var(--fh);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);transition:color .3s var(--ease)}
 .tab.on{color:var(--tc,var(--pri))}
 .tab[data-t=a]{--tc:var(--pri)}.tab[data-t=p]{--tc:var(--sec)}.tab[data-t=w]{--tc:var(--acc)}
@@ -191,17 +191,33 @@ body.in .nav{transform:translate(-50%,0)}
 .nv.on{background:var(--cg);color:var(--pri)}.nv.on svg{animation:pop .5s var(--spring)}
 
 /* rest timer + toast */
-.rest{position:fixed;left:50%;bottom:calc(var(--nav) + 26px + env(safe-area-inset-bottom));transform:translate(-50%,300%);z-index:40;width:min(calc(100% - 28px),520px);
+.rest{position:fixed;left:50%;bottom:calc(var(--nav) + 20px + env(safe-area-inset-bottom));transform:translate(-50%,300%);z-index:40;pointer-events:none;width:min(calc(100% - 28px),520px);
   background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,0) 60%),var(--glass);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);
-  border:1px solid var(--line);border-radius:22px;padding:12px 14px 14px;box-shadow:0 16px 40px rgba(0,0,0,.35);transition:transform .5s var(--spring)}
-.rest.on{transform:translate(-50%,0)}
-.rest .t{font-family:var(--fh);font-size:26px;font-weight:700;min-width:70px}
+  border:1px solid var(--line);border-radius:20px;padding:8px 12px 10px;box-shadow:0 16px 40px rgba(0,0,0,.35);transition:transform .5s var(--spring)}
+.rest.on{transform:translate(-50%,0)}.rest .btn{pointer-events:auto}
+.rest .t{font-family:var(--fh);font-size:22px;font-weight:700;min-width:58px}
 .rest small{display:block;color:var(--dim);font-size:11px}
 .rest .grow{flex:1;min-width:0}.rest .grow span{font-size:13px;font-weight:500;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rest .bar{margin:10px 0 0;height:4px}.rest .bar i{transition:width .3s linear;animation:none}
+.rest .bar{margin:7px 0 0;height:4px}.rest .bar i{transition:width .3s linear;animation:none}
 .rest.fin .t{color:var(--c)}
 .toast{position:fixed;top:max(14px,env(safe-area-inset-top));left:50%;transform:translate(-50%,-160%);z-index:90;padding:11px 18px;border-radius:99px;background:var(--glass);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);font-size:13px;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .5s var(--spring);max-width:calc(100% - 28px);text-align:center}
 .toast.on{transform:translate(-50%,0)}
+
+/* sticky bar set / reps / durasi */
+html{scroll-padding-top:100px;scroll-padding-bottom:190px}
+.sbar{position:sticky;top:max(10px,env(safe-area-inset-top));z-index:30;margin:18px 0 4px;padding:10px 12px 8px;border-radius:20px;background:var(--glass);backdrop-filter:blur(16px) saturate(160%);-webkit-backdrop-filter:blur(16px) saturate(160%);border:1px solid var(--line);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.sbar:empty{display:none}
+.sbi{display:grid;grid-template-columns:1fr 1fr 1.25fr auto;gap:6px;align-items:center}
+.sb{text-align:center;min-width:0}.sb b{display:block;font-family:var(--fh);font-size:18px;font-weight:600;line-height:1.2;font-variant-numeric:tabular-nums}.sb span{font-size:10px;color:var(--dim)}
+.sbar .bar{margin:8px 2px 0;height:4px}
+.sp{width:42px;height:42px;border-radius:50%;background:var(--c);color:#0D0D12;display:flex;align-items:center;justify-content:center;margin-left:4px;transition:transform .16s var(--ease),background .3s}
+.sp svg{width:18px;height:18px;fill:currentColor}.sp.run{background:var(--card2);color:var(--text)}.sp:disabled{opacity:.55}.sp .ripple{background:#fff}.sp.is-pressed{transform:scale(.88)}
+.times{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:16px}
+.times div{background:var(--card);border-radius:14px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.card .times div{background:var(--card2)}
+.times small{color:var(--dim);font-size:12px}.times b{font-family:var(--fh);font-weight:600;font-size:16px;font-variant-numeric:tabular-nums}
+.rest .t{font-variant-numeric:tabular-nums}
+.nv.live::after{content:"";position:absolute;top:9px;left:calc(50% + 8px);width:8px;height:8px;border-radius:50%;background:var(--acc);box-shadow:0 0 0 2px var(--glass)}
 
 /* micro interactions */
 .ripple{position:absolute;border-radius:50%;pointer-events:none;background:var(--c);opacity:0;transform:scale(0);animation:rip .62s var(--ease) forwards}
@@ -248,6 +264,7 @@ body.in .nav{transform:translate(-50%,0)}
       <button class="tab" data-t="a">Anterior</button><button class="tab" data-t="p">Posterior</button><button class="tab" data-t="w">Weak Point</button><i class="ind"></i>
     </nav>
     <section class="wh" id="wh"></section>
+    <div class="sbar" id="sbar"></div>
     <section id="list"></section>
     <section class="rules"><h3>Aturan Rest</h3><div class="rl">
       <div><span>Main Lift</span><b>2,5&ndash;3 menit</b></div><div><span>Secondary</span><b>1,5&ndash;2 menit</b></div>
@@ -326,7 +343,7 @@ body.in .nav{transform:translate(-50%,0)}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 
   /* ── pengaturan ── */
-  var S2={name:'Ama',theme:'dark',auto:true,vib:true};
+  var S2={name:'Ama',theme:'dark',auto:true,snd:true};
   try{var r2=JSON.parse(localStorage.getItem('ama-set'));if(r2)for(var k in r2)S2[k]=r2[k]}catch(e){}
   function save2(){try{localStorage.setItem('ama-set',JSON.stringify(S2))}catch(e){}}
   function theme(){document.documentElement.dataset.theme=S2.theme;var m=$('meta[name=theme-color]');if(m)m.content={dark:'#0D0D12',midnight:'#0B1030',light:'#F3F3FA'}[S2.theme]}
@@ -335,9 +352,9 @@ body.in .nav{transform:translate(-50%,0)}
   var now=new Date(),today=(now.getDay()+6)%7;
   var mon=new Date(now);mon.setDate(now.getDate()-today);
   var wk=mon.getFullYear()+'-'+(mon.getMonth()+1)+'-'+mon.getDate();
-  function fresh(){return{wk:wk,sets:{},acc:{},last:null}}
+  function fresh(){return{wk:wk,sets:{},acc:{},t0:{},t1:{},run:null,last:null}}
   var S=fresh();
-  try{var raw=JSON.parse(localStorage.getItem('ama-prog'));if(raw&&raw.wk===wk)S=raw;if(!S.acc)S.acc={}}catch(e){}
+  try{var raw=JSON.parse(localStorage.getItem('ama-prog'));if(raw&&raw.wk===wk)S=raw;if(!S.acc)S.acc={};if(!S.t0)S.t0={};if(!S.t1)S.t1={}}catch(e){}
   function save(){try{localStorage.setItem('ama-prog',JSON.stringify(S))}catch(e){}}
 
   var selW=0,cur='home',shown=-1;  // Workout selalu mulai dari Anterior (Sen)
@@ -348,32 +365,75 @@ body.in .nav{transform:translate(-50%,0)}
   function repsOf(d){var r=0;exOf(d).forEach(function(e,i){r+=done(d+'-'+i)*e[3]});return r}
   var SESS=DAYS.filter(function(d){return d[2]!=='r'}).length;
   function weekDone(){return DAYS.filter(function(_,i){return dayDone(i)}).length}
+  // hari istirahat otomatis tercatat begitu harinya lewat (tidak mengubah persentase sesi latihan)
+  function restDone(i){return DAYS[i][2]==='r'&&i<today}
+  var RESTN=DAYS.filter(function(d){return d[2]==='r'}).length;
+  function restCount(){return DAYS.filter(function(_,i){return restDone(i)}).length}
+  function restNote(i){return restDone(i)?'<span style="color:var(--pri)">✓ Istirahat tercatat otomatis</span>':(i===today?'Tercatat otomatis saat hari ini berakhir':'')}
   function fmt(ms){var s=Math.max(0,Math.floor(ms/1000)),h=Math.floor(s/3600),m=Math.floor(s%3600/60);s%=60;
     return(h?h+':'+String(m).padStart(2,'0'):String(m).padStart(2,'0'))+':'+String(s).padStart(2,'0')}
   function toast(m){var t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(function(){t.classList.remove('on')},2600)}
 
-  /* ── sesi latihan: durasi bisa dijeda ── */
-  var run=null;
-  function elapsed(d){return(S.acc[d]||0)+(run&&run.d===d?Date.now()-run.since:0)}
-  function start(d){if(run&&run.d===d)return;if(run)pause();run={d:d,since:Date.now()};S.last=d;save();sessUI()}
-  function pause(msg){if(!run)return;S.acc[run.d]=(S.acc[run.d]||0)+Date.now()-run.since;run=null;save();if(msg)toast(msg);sessUI()}
+  /* ── sesi latihan: durasi mengikuti jam asli & tetap jalan di latar belakang ── */
+  var run=S.run&&S.run.since?S.run:null;
+  var PLAY='<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>',PAUSE='<svg viewBox="0 0 24 24"><path d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>',
+      OKI='<svg viewBox="0 0 24 24" style="fill:none;stroke:currentColor;stroke-width:3;stroke-linecap:round;stroke-linejoin:round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  function elapsed(d,n){n=n||Date.now();return(S.acc[d]||0)+(run&&run.d===d?n-run.since:0)}
+  function clock(ts){return ts?new Date(ts).toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit',hour12:false}).replace('.',':'):'—'}
+  function phase(){return run?(((run.since-(S.acc[run.d]||0))%1000)+1000)%1000:0}
+  // samakan detik rest dengan detik durasi: keduanya berganti pada milidetik yang sama
+  function align(){if(R.end>Date.now())R.end-=(((R.end-phase())%1000)+1000)%1000}
+  function start(d){if(run&&run.d===d)return;if(run)pause();var n=Date.now();run={d:d,since:n};S.run=run;S.last=d;if(!S.t0[d])S.t0[d]=n;save();align();sessUI()}
+  function pause(msg){if(!run)return;S.acc[run.d]=(S.acc[run.d]||0)+Date.now()-run.since;run=null;S.run=null;save();align();if(msg)toast(msg);sessUI()}
   function sessUI(){
-    var b=$('#sbtn');if(!b)return;var d=selW,ok=dayDone(d),r=run&&run.d===d,has=S.acc[d]>0;
-    b.innerHTML=ok?'Sesi selesai':r?'Jeda':(has?'Lanjutkan':'Mulai Latihan');
-    b.disabled=ok;b.classList.toggle('run',r);
-    $('#sst').textContent=ok?'Selesai':r?'Berjalan':(has?'Dijeda':'Belum dimulai');tick();
+    var d=selW,ok=dayDone(d),r=run&&run.d===d,has=S.acc[d]>0;
+    document.querySelectorAll('.sbtn').forEach(function(b){
+      b.disabled=ok;b.classList.toggle('run',r);
+      if(b.classList.contains('sp'))b.innerHTML=ok?OKI:r?PAUSE:PLAY;
+      else b.innerHTML=ok?'Sesi selesai':r?'Jeda':(has?'Lanjutkan':'Mulai Latihan');
+    });
+    var st=$('#sst');if(st)st.textContent=ok?'Selesai':r?'Berjalan':(run?'Aktif: '+DAYS[run.d][0]:(has?'Dijeda':'Durasi'));
+    var a=$('#t0');if(a)a.textContent=clock(S.t0[d]);var b2=$('#t1');if(b2)b2.textContent=clock(S.t1[d]);
+    $('.nv[data-v=workout]').classList.toggle('live',!!run);
+    update();
   }
-  function tick(){
-    var a=$('#s3');if(a)a.textContent=fmt(elapsed(selW));
-    var b=$('#pdur');if(b)b.textContent=fmt(elapsed(pday()));
+  /* ── notifikasi rest selesai: getar + bunyi ── */
+  var AC=null;
+  function unlock(){try{if(!AC){var C=window.AudioContext||window.webkitAudioContext;if(C)AC=new C()}if(AC&&AC.state==='suspended')AC.resume()}catch(e){}}
+  document.addEventListener('pointerdown',unlock,{passive:true});
+  // nada singkat 3 not naik (E5 → A5 → E6), lembut, ±0,8 detik
+  function chime(){
+    if(!S2.snd)return;unlock();if(!AC)return;
+    try{
+      var t0=AC.currentTime+.03;
+      [[659.25,0],[880,.15],[1318.5,.3]].forEach(function(nt){
+        var o=AC.createOscillator(),o2=AC.createOscillator(),g=AC.createGain(),h=AC.createGain(),st=t0+nt[1];
+        o.type='sine';o.frequency.value=nt[0];o2.type='triangle';o2.frequency.value=nt[0]*2;h.gain.value=.14;
+        o.connect(g);o2.connect(h);h.connect(g);g.connect(AC.destination);
+        g.gain.setValueAtTime(.0001,st);g.gain.exponentialRampToValueAtTime(.42,st+.012);g.gain.exponentialRampToValueAtTime(.0001,st+.5);
+        o.start(st);o2.start(st);o.stop(st+.55);o2.stop(st+.55)})
+    }catch(e){}
   }
-  setInterval(tick,500);
-  document.addEventListener('visibilitychange',function(){if(document.hidden&&run)pause()});
-  addEventListener('pagehide',function(){pause()});
+  function alertEnd(){chime()}
+  function testSound(){if(!S2.snd){toast('Bunyi sedang dimatikan');return}chime()}
+  /* ── satu ticker untuk durasi & rest (detik selalu sinkron) ── */
+  function update(){
+    var n=Date.now(),a=$('#s3');
+    if(a){var t=fmt(elapsed(selW,n));if(a.textContent!==t)a.textContent=t}
+    var p=$('#pdur');if(p){var t2=fmt(elapsed(pday(),n));if(p.textContent!==t2)p.textContent=t2}
+    if(R.end){
+      var left=R.end-n;
+      if(left>0){var r=fmt(Math.ceil(left/1000)*1000),rt=$('#rt');if(rt.textContent!==r)rt.textContent=r;$('#rb').style.width=Math.min(100,left/R.tot*100)+'%'}
+      else if(!R.done){R.done=true;$('#rt').textContent='00:00';$('#rb').style.width='0%';$('#rest').classList.add('fin');$('#rl').textContent='Selesai — lanjut set berikutnya';alertEnd();
+        var e=R.end;setTimeout(function(){if(R.end===e){$('#rest').classList.remove('on');R.end=0}},3000)}
+    }
+  }
+  setInterval(update,100);
+  document.addEventListener('visibilitychange',update);
 
   /* ── navigasi utama ── */
   function view(v){
-    if(cur==='workout'&&v!=='workout'&&run)pause('Latihan dijeda · progres & durasi tersimpan');
+    
     cur=v;
     document.querySelectorAll('.view').forEach(function(x){x.classList.toggle('on',x.id==='v-'+v)});
     document.querySelectorAll('.nv').forEach(function(x){x.classList.toggle('on',x.dataset.v===v)});
@@ -388,9 +448,9 @@ body.in .nav{transform:translate(-50%,0)}
   function renderHome(){
     var k=DAYS[today][2],dn=weekDone(),p=Math.round(dn/SESS*100),h=
       '<h1>Hey '+esc(S2.name)+' &#128170;</h1><p class="sub">Siap taklukkan targetmu hari ini?</p>'+
-      '<div class="card wk"><div class="row"><span>Weekly Progress</span><b class="pct">'+p+'%</b></div><div class="bar"><i style="width:'+p+'%"></i></div><small>'+dn+' dari '+SESS+' sesi latihan selesai</small></div>'+
+      '<div class="card wk"><div class="row"><span>Weekly Progress</span><b class="pct">'+p+'%</b></div><div class="bar"><i style="width:'+p+'%"></i></div><small>'+dn+' dari '+SESS+' sesi latihan selesai · istirahat tercatat '+restCount()+'/'+RESTN+'</small></div>'+
       '<div class="sec-t"><h2 class="ttl">Today\'s Plan</h2><small>'+FULL[today]+'</small></div>';
-    if(k==='r')h+='<div class="card restday"><h3>Hari Istirahat</h3><p>Otot tumbuh saat pemulihan. Tidur cukup, makan cukup protein, dan jalan santai sudah cukup.</p><button class="go" data-act="sched">Lihat Jadwal</button></div>';
+    if(k==='r')h+='<div class="card restday"><h3>Hari Istirahat</h3><p>Otot tumbuh saat pemulihan. Tidur cukup, makan cukup protein, dan jalan santai sudah cukup.</p><p style="margin-top:10px;font-size:13px;color:var(--dim)">'+restNote(today)+'</p><button class="go" data-act="sched">Lihat Jadwal</button></div>';
     else{var t=totals(today),pp=Math.round(t.x/t.t*100);
       h+='<div class="card" data-c="'+k+'"><div class="plan"><div class="pi">'+DUMB+'</div><div><h3>'+NAMES[k]+'</h3><p>'+t.n+' latihan &middot; Estimasi '+TIME[k]+' menit</p></div></div>'+
         '<div class="plan-prog"><div class="bar"><i style="width:'+pp+'%"></i></div><small>'+t.x+'/'+t.t+' set selesai</small></div>'+
@@ -404,7 +464,7 @@ body.in .nav{transform:translate(-50%,0)}
 
   /* ── WORKOUT ── */
   function renderWeek(){
-    $('#week').innerHTML=DAYS.map(function(d,i){var dn=dayDone(i);
+    $('#week').innerHTML=DAYS.map(function(d,i){var dn=dayDone(i)||restDone(i);
       return '<button class="dsq'+(i===selW?' sel':'')+(i===today?' today':'')+(dn?' done':'')+'" data-i="'+i+'" data-k="'+d[2]+'" aria-label="'+FULL[i]+'"><span class="dl">'+d[0]+'</span><span class="dk">'+d[1]+'</span><span class="ic">'+(dn?CHECK:'')+'</span></button>'}).join('');
   }
   function card(n,e,id){
@@ -422,16 +482,16 @@ body.in .nav{transform:translate(-50%,0)}
     document.body.dataset.c=cbody();
     if(k==='r'){var nx=0;for(var j=1;j<=7;j++){if(DAYS[(selW+j)%7][2]!=='r'){nx=(selW+j)%7;break}}
       $('#wh').innerHTML='';
-      $('#list').innerHTML='<div class="card restday"><h3>Hari Istirahat</h3><p>Otot tumbuh saat pemulihan. Tidur cukup, makan cukup protein, dan jalan santai sudah cukup.</p><p style="margin-top:10px;color:var(--dim)">Sesi berikutnya: '+NAMES[DAYS[nx][2]]+' ('+DAYS[nx][0]+')</p></div>';
-      markTabs();return}
+      $('#list').innerHTML='<div class="card restday"><h3>Hari Istirahat</h3><p>Otot tumbuh saat pemulihan. Tidur cukup, makan cukup protein, dan jalan santai sudah cukup.</p><p style="margin-top:10px;color:var(--dim)">Sesi berikutnya: '+NAMES[DAYS[nx][2]]+' ('+DAYS[nx][0]+')</p><p style="margin-top:10px;font-size:13px">'+restNote(selW)+'</p></div>';
+      $('#sbar').innerHTML='';markTabs();return}
     D[k].forEach(function(s){
       h+='<div class="sh"><span>'+s[0]+'</span>'+(s[1]?'<small>'+s[1]+'</small>':'')+'</div>'+(s[3]?'<p class="note">'+s[3]+'</p>':'')+'<div class="list">';
       s[2].forEach(function(e){h+=card(n,e,selW+'-'+n);n++});h+='</div>';
     });
     $('#wh').innerHTML='<div class="row"><div><h2>'+NAMES[k]+'</h2><p>'+n+' latihan &middot; Estimasi '+TIME[k]+' menit</p></div><span class="badge" id="bd"></span></div>'+
-      '<div class="stats"><div><b id="s1"></b><span>Set</span></div><div><b id="s2"></b><span>Reps</span></div><div><b id="s3">00:00</b><span id="sst">Durasi</span></div></div>'+
-      '<div class="bar" style="margin-top:14px"><i id="pb"></i></div>'+
-      '<button class="go" id="sbtn"></button>';
+      '<div class="times"><div><small>Mulai</small><b id="t0">—</b></div><div><small>Selesai</small><b id="t1">—</b></div></div>'+
+      '<button class="go sbtn"></button>';
+    $('#sbar').innerHTML='<div class="sbi"><div class="sb"><b id="s1"></b><span>Set</span></div><div class="sb"><b id="s2"></b><span>Reps</span></div><div class="sb"><b id="s3">00:00</b><span id="sst">Durasi</span></div><button class="sp sbtn" aria-label="Mulai atau jeda durasi"></button></div><div class="bar"><i id="pb"></i></div>';
     $('#list').innerHTML=h;
     document.querySelectorAll('#list .ec,#list .sh').forEach(function(el,i){el.style.setProperty('--i',i)});
     markTabs();upd();
@@ -464,31 +524,26 @@ body.in .nav{transform:translate(-50%,0)}
     var d=+id.split('-')[0],e=exOf(d)[+id.split('-')[1]],prev=done(id);
     v=Math.max(0,Math.min(e[1],v));S.sets[id]=v;S.last=d;
     if(v>prev){if(!run||run.d!==d)start(d);if(S2.auto)startRest(e[4],e[0])}
-    save();
-    if(dayDone(d)){pause();toast('Sesi selesai — kerja bagus!')}
-    upd();
+    if(dayDone(d)){
+      if(!S.t1[d]){S.t1[d]=Date.now();toast('Sesi selesai — kerja bagus!')}
+      if(run&&run.d===d)pause();R.end=0;R.done=true;$('#rest').classList.remove('on');
+    }else if(S.t1[d])delete S.t1[d];
+    save();upd();
   }
 
-  /* ── rest timer ── */
-  var R={end:0,tot:0,iv:null};
-  function startRest(sec,name){R.tot=sec*1000;R.end=Date.now()+R.tot;$('#rl').textContent=name;$('#rest').classList.remove('fin');$('#rest').classList.add('on');clearInterval(R.iv);R.iv=setInterval(rt,250);rt()}
-  function rt(){
-    var left=R.end-Date.now();
-    if(left<=0){clearInterval(R.iv);$('#rt').textContent='00:00';$('#rb').style.width='0%';$('#rest').classList.add('fin');$('#rl').textContent='Selesai — lanjut set berikutnya';
-      if(S2.vib&&navigator.vibrate)try{navigator.vibrate([120,60,120])}catch(e){}
-      var end=R.end;setTimeout(function(){if(R.end===end)$('#rest').classList.remove('on')},2800);return}
-    $('#rt').textContent=fmt(left);$('#rb').style.width=(left/R.tot*100)+'%';
-  }
-  $('#rplus').onclick=function(){if(R.end>Date.now()){R.end+=15000;R.tot+=15000;rt()}};
-  $('#rskip').onclick=function(){clearInterval(R.iv);R.end=0;$('#rest').classList.remove('on')};
+  /* ── rest timer (boleh pindah latihan/set kapan saja; rest baru menggantikan yang lama) ── */
+  var R={end:0,tot:0,done:true};
+  function startRest(sec,name){unlock();R.tot=sec*1000;R.end=Date.now()+R.tot;R.done=false;align();$('#rl').textContent=name;$('#rest').classList.remove('fin');$('#rest').classList.add('on');update()}
+  $('#rplus').onclick=function(){if(R.end>Date.now()){R.end+=15000;R.tot+=15000;update()}};
+  $('#rskip').onclick=function(){R.end=0;R.done=true;$('#rest').classList.remove('on')};
 
   /* ── skeleton shimmer + ganti hari ── */
   var lt=null,first=true;
   function skel(){var c='';for(var i=0;i<4;i++)c+='<div class="skc"><span class="sk"></span><div><span class="sk" style="height:14px;width:'+(66-i*6)+'%"></span><span class="sk" style="height:11px;width:34%"></span><span class="sk" style="height:11px;width:50%"></span></div></div>';return '<div class="list" style="margin-top:24px">'+c+'</div>'}
   function go(d){
-    if(run&&run.d!==d)pause('Latihan dijeda · progres & durasi tersimpan');
+    
     selW=d;shown=-1;clearTimeout(lt);renderWeek();document.body.dataset.c=cbody();markTabs();
-    var l=$('#list');$('#wh').innerHTML='';l.classList.remove('rev');l.innerHTML=DAYS[d][2]==='r'?'':skel();
+    var l=$('#list');$('#wh').innerHTML='';$('#sbar').innerHTML='';l.classList.remove('rev');l.innerHTML=DAYS[d][2]==='r'?'':skel();
     lt=setTimeout(function(){renderList();l.classList.add('rev');setTimeout(function(){l.classList.remove('rev')},900)},reduce?150:(first?700:450));
     first=false;
   }
@@ -498,7 +553,7 @@ body.in .nav{transform:translate(-50%,0)}
     go(DAYS.findIndex(function(d){return d[2]===t.dataset.t}));
   });
   $('#v-workout').addEventListener('click',function(e){
-    if(e.target.closest('#sbtn')){if(run&&run.d===selW)pause('Dijeda · progres & durasi tersimpan');else start(selW);return}
+    if(e.target.closest('.sbtn')){if(run&&run.d===selW)pause('Dijeda · progres & durasi tersimpan');else start(selW);return}
     var el=e.target.closest('#list .ec');if(!el)return;var id=el.dataset.id,ex=exOf(selW)[+id.split('-')[1]];
     if(e.target.closest('.ck')){setDone(id,done(id)>=ex[1]?0:done(id)+1);return}
     var pl=e.target.closest('.pill');
@@ -513,15 +568,16 @@ body.in .nav{transform:translate(-50%,0)}
   function renderProgress(){
     var d=pday(),k=DAYS[d][2],t=totals(d),p=t.t?Math.round(t.x/t.t*100):0,dn=weekDone(),h='';
     h+='<h1>Progress</h1><p class="sub">'+(d===today?'Hari ini':FULL[d])+(k==='r'?' · Istirahat':' · '+NAMES[k])+'</p>';
-    if(k==='r')h+='<div class="card restday"><h3>Hari Istirahat</h3><p>Tidak ada target latihan hari ini. Pemulihan juga bagian dari progres.</p></div>';
+    if(k==='r')h+='<div class="card restday"><h3>Hari Istirahat</h3><p>Tidak ada target latihan hari ini. Pemulihan juga bagian dari progres.</p><p style="margin-top:10px;font-size:13px">'+restNote(d)+'</p></div>';
     else{
       h+='<div class="card" data-c="'+k+'"><div class="pr"><div class="ringw"><svg viewBox="0 0 100 100"><circle class="t" cx="50" cy="50" r="44"/><circle class="p" cx="50" cy="50" r="44" stroke-dasharray="276.5" stroke-dashoffset="'+(276.5*(1-p/100))+'"/></svg><b>'+p+'%</b></div>'+
         '<div><h3>'+(dayDone(d)?'Sesi selesai':(run&&run.d===d?'Sedang berjalan':(S.acc[d]>0||t.x?'Dijeda':'Belum dimulai')))+'</h3><p>'+t.x+' dari '+t.t+' set</p><p>'+t.ed+' dari '+t.n+' latihan tuntas</p></div></div>'+
-        '<div class="stats"><div><b>'+t.x+'</b><span>Set</span></div><div><b>'+repsOf(d)+'</b><span>Reps</span></div><div><b id="pdur">'+fmt(elapsed(d))+'</b><span>Durasi</span></div></div></div>';
+        '<div class="stats"><div><b>'+t.x+'</b><span>Set</span></div><div><b>'+repsOf(d)+'</b><span>Reps</span></div><div><b id="pdur">'+fmt(elapsed(d))+'</b><span>Durasi</span></div></div>'+
+        '<div class="times" style="margin-top:8px"><div><small>Mulai</small><b>'+clock(S.t0[d])+'</b></div><div><small>Selesai</small><b>'+clock(S.t1[d])+'</b></div></div></div>';
     }
-    h+='<div class="sec-t"><h2 class="ttl">Minggu Ini</h2><small>'+dn+'/'+SESS+' sesi</small></div><div class="card"><div class="chart">'+
-      DAYS.map(function(x,i){var tt=totals(i),q=tt.t?Math.round(tt.x/tt.t*100):0,hh=x[2]==='r'?4:Math.max(q,4);
-        return '<div class="bc'+(i===today?' today':'')+'"><div class="bw" style="--k:'+(x[2]==='p'?'var(--sec)':x[2]==='w'?'var(--acc)':'var(--pri)')+'"><i style="--i:'+i+';height:'+hh+'%;'+(x[2]==='r'||!q?'opacity:.35':'')+'"></i></div><span>'+x[0]+'</span></div>'}).join('')+'</div></div>';
+    h+='<div class="sec-t"><h2 class="ttl">Minggu Ini</h2><small>'+dn+'/'+SESS+' sesi · istirahat '+restCount()+'/'+RESTN+'</small></div><div class="card"><div class="chart">'+
+      DAYS.map(function(x,i){var tt=totals(i),q=tt.t?Math.round(tt.x/tt.t*100):0,hh=x[2]==='r'?(restDone(i)?100:4):Math.max(q,4);
+        return '<div class="bc'+(i===today?' today':'')+'"><div class="bw" style="--k:'+(x[2]==='p'?'var(--sec)':x[2]==='w'?'var(--acc)':x[2]==='r'?'#6C6C86':'var(--pri)')+'"><i style="--i:'+i+';height:'+hh+'%;'+(x[2]==='r'?(restDone(i)?'opacity:.55':'opacity:.3'):(!q?'opacity:.35':''))+'"></i></div><span>'+x[0]+'</span></div>'}).join('')+'</div></div>';
     if(k!=='r'){h+='<div class="sec-t"><h2 class="ttl">Rincian Latihan</h2></div><div class="card" data-c="'+k+'" style="padding:6px 20px">'+
       exOf(d).map(function(e,i){var v=done(d+'-'+i);return '<div class="pe"><span>'+e[0]+'</span><div class="bar"><i style="width:'+(v/e[1]*100)+'%"></i></div><em>'+v+'/'+e[1]+'</em></div>'}).join('')+'</div>'}
     $('#v-progress').innerHTML=h;
@@ -536,7 +592,8 @@ body.in .nav{transform:translate(-50%,0)}
       '<label class="fld" for="nm">Nama panggilan (sapaan di Home)</label><input class="inp" id="nm" maxlength="14" value="'+esc(S2.name)+'" autocomplete="off"></div>'+
       '<div class="sec-t"><h2 class="ttl">Pengaturan</h2></div><div class="card" style="padding:4px 20px">'+
       '<div class="set"><div>Rest timer otomatis<small>Mulai hitung mundur tiap set dicatat</small></div>'+sw('auto',S2.auto)+'</div>'+
-      '<div class="set"><div>Getaran<small>Saat waktu istirahat habis</small></div>'+sw('vib',S2.vib)+'</div></div>'+
+      '<div class="set"><div>Bunyi<small>Nada singkat saat waktu istirahat habis</small></div>'+sw('snd',S2.snd)+'</div>'+
+      '<div class="set"><div>Tes bunyi<small>Dengarkan nada saat rest habis</small></div><button class="btn" id="tv">Coba</button></div></div>'+
       '<div class="sec-t"><h2 class="ttl">Tema</h2></div><div class="ths">'+th('dark','Gelap','#0D0D12')+th('midnight','Midnight','linear-gradient(135deg,#0B1032,#1A1560)')+th('light','Terang','#F3F3FA')+'</div>'+
       '<div class="sec-t"><h2 class="ttl">Data</h2></div><button class="danger" id="rst">Reset progres minggu ini</button><p class="ver">Ama Fit &middot; progres tersimpan di perangkat ini</p>';
   }
@@ -547,6 +604,7 @@ body.in .nav{transform:translate(-50%,0)}
     var s=e.target.closest('[data-sw]'),t=e.target.closest('[data-th]');
     if(s){S2[s.dataset.sw]=!S2[s.dataset.sw];save2();s.classList.toggle('on',S2[s.dataset.sw]);s.setAttribute('aria-checked',S2[s.dataset.sw])}
     if(t){S2.theme=t.dataset.th;save2();theme();document.querySelectorAll('.th').forEach(function(x){x.classList.toggle('on',x===t)})}
+    if(e.target.closest('#tv'))testSound();
     if(e.target.closest('#rst')&&confirm('Hapus semua progres dan durasi minggu ini?')){run=null;S=fresh();save();shown=-1;toast('Progres minggu ini direset')}
   });
 
@@ -557,7 +615,7 @@ body.in .nav{transform:translate(-50%,0)}
   });
 
   /* ── micro interaction: press, ripple, pop ── */
-  var SEL='.dsq,.tab,.btn,.ck,.pill,.ec,.nv,.go,.gs,.th,.sw,.danger',host=null;
+  var SEL='.dsq,.tab,.btn,.ck,.pill,.ec,.nv,.go,.gs,.th,.sw,.danger,.sp',host=null;
   function ripple(el,x,y){var r=el.getBoundingClientRect(),d=Math.max(r.width,r.height)*2,s=document.createElement('span');
     s.className='ripple';s.style.cssText='width:'+d+'px;height:'+d+'px;left:'+(x-r.left-d/2)+'px;top:'+(y-r.top-d/2)+'px';el.appendChild(s);setTimeout(function(){s.remove()},700)}
   document.addEventListener('pointerdown',function(e){
@@ -574,7 +632,10 @@ body.in .nav{transform:translate(-50%,0)}
   addEventListener('resize',markTabs);
 
   /* ── mulai ── */
-  theme();renderHome();
+  theme();renderHome();sessUI();
+  var dkey=now.toDateString();
+  function dayChk(){if(new Date().toDateString()!==dkey)location.reload()}
+  setInterval(dayChk,30000);document.addEventListener('visibilitychange',dayChk);
   if(document.fonts)document.fonts.ready.then(markTabs);
 })();
 </script>
